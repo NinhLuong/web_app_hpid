@@ -1,6 +1,6 @@
 # web_app_hpid
 
-A new Flutter project.
+Design multi-platform web and mobile apps to manage network ports of the system within the company
 
 ## Getting Started
 
