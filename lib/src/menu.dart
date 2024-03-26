@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 enum _MenuOptions {
   navigationDelegate,
@@ -13,7 +15,6 @@ enum _MenuOptions {
   removeCookie,
   // ... to here.
 }
-
 class Menu extends StatefulWidget {
   const Menu({required this.controller, super.key});
 
@@ -22,18 +23,49 @@ class Menu extends StatefulWidget {
   @override
   State<Menu> createState() => _MenuState();
 }
-
 class _MenuState extends State<Menu> {
   final cookieManager = WebViewCookieManager();
-
+  Future<void> saveUrl(String url) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('url', url);
+  }
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<_MenuOptions>(
       onSelected: (value) async {
         switch (value) {
           case _MenuOptions.navigationDelegate:
-            await widget.controller
-                .loadRequest(Uri.parse('https://hass.homethang.duckdns.org/'));
+            String url = 'https://hpidweb.homethang.duckdns.org/';
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Enter URL'),
+                  content: TextField(
+                    onChanged: (value) {
+                      url = value;
+                    },
+                    decoration: InputDecoration(hintText: "Please enter URL"),
+                  ),
+                  actions: [
+                    TextButton(
+                      child: Text('CANCEL'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    TextButton(
+                      child: Text('OK'),
+                      onPressed: () async {
+                        Navigator.of(context).pop();
+                        await saveUrl(url);
+                        await widget.controller.loadRequest(Uri.parse(url));
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
             break;
           case _MenuOptions.userAgent:
             final userAgent = await widget.controller
@@ -77,7 +109,7 @@ req.send();''');
       itemBuilder: (context) => [
         const PopupMenuItem<_MenuOptions>(
           value: _MenuOptions.navigationDelegate,
-          child: Text('Navigate to YouTube'),
+          child: Text('Custom link web'),
         ),
         const PopupMenuItem<_MenuOptions>(
           value: _MenuOptions.userAgent,
