@@ -1,4 +1,4 @@
-# web_app_hpid
+# The outsource project develops Multiplatform Mobile Apps and Web for HPID Company
 
 Design web and multi-platform mobile apps to manage network ports of the system within the company
 
