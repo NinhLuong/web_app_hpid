@@ -1,0 +1,539 @@
+/api/login:
+
+	POST:
+		req:
+			headers = {'Content-Type': 'application/json',
+			}
+			body = {
+			    "adminname": "admin",
+			    "password": "admin",
+			}
+		res: //string authorize token
+			eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......
+
+**************************************
+/api/admin:
+
+	GET:
+		req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+		res: //json list admin 
+			[
+			    {
+			        "adminname": "admin",
+			        "email": "",
+			        "fullname": ""
+			    },
+			    {
+			        "adminname": "testuser",
+			        "email": "testuser@example.com",
+			        "fullname": "Test User2"
+			    },
+			    {
+			        "adminname": "testuser1",
+			        "email": "testuser@example.com",
+			        "fullname": "Test User"
+			    }
+			]
+
+	POST: 
+		req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+           	body = {
+			    "adminname": "testuser",
+			    "password": "testpassword",
+			    "email": "testuser@example.com",
+			    "fullname": "Test User",
+			    "confirmpassword": "testpassword"
+			}
+        res: //string message 
+        	Add done
+
+    PATCH:
+    	param:
+    		password=false
+    	req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+           	body = {
+			    "adminname": "testuser",
+			    "email": "testuser@example.com",
+			    "fullname": "Test User",
+			}
+        res: //string message 
+        	Edit admin done
+
+        param:
+        	password=true
+        req:
+        	headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+           	body = {
+			    "password": "admin1111"
+			}
+        res: //string message 
+        	Edit password done
+
+    DELETE:
+    	req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+           	body = {
+			    "adminname": "testuser",
+			}
+        res: //string message 
+        	Removed
+
+
+********************************
+/api/user:
+
+	GET:
+	///// User Management \\\\\
+		param:
+			right=false
+		req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+		res: //json list user 
+			[
+			    {	
+			    	"id": 0,
+			        "username": "testuser",
+			        "email": "testuser@example.com",
+			        "group": "Test",
+			    },
+			    {
+			    	"id": 1,
+			        "username": "testuser1",
+			        "email": "testuser@example.com",
+			        "group": "Test",
+			    }
+			]
+
+	///// Right Assignment \\\\\
+		param:
+			right=true
+		req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+		res: //json list user 
+			[
+			    {
+			    	"id": 0,
+			        "username": "testuser",
+			        "email": "testuser@example.com",
+			        "group": "Test",
+			        "right": [
+			            {
+			                "right": "No access"
+			            }
+			        ]
+			    },
+			    {
+			    	"id": 1,
+			        "username": "testuser1",
+			        "email": "testuser@example.com",
+			        "group": "Test",
+			        "right": [
+			            {
+			                "right": "No access"
+			            }
+			        ]
+			    }
+			]
+
+
+	POST:
+	///// add 1 user \\\\\
+		param:
+			csv=false
+		req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+           	body = {
+		        "username": "testuser1",
+		        "email": "testuser@example.com",
+		        "group": "Test"
+			}
+        res: //string message 
+        	Add done
+
+    ///// import csv user \\\\\
+
+    	csv data sample:
+    		username,email,group
+			John,john@example.com,test
+			Alice,alice@example.com,test
+			a,bob@example.com,test
+			b,john@example.com,test
+			b,alice@example.com,test
+			d,bob@example.com,test
+			e,john@example.com,test
+			f,alice@example.com,test
+			g,bob@example.com,test
+
+    	code example:
+	    	var myHeaders = new Headers();
+			myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiIiwiaWF0IjoxNjk5MTA0NzA2LCJleHAiOjE2OTkxNDA3MDZ9.6g-BZN0KacnwMArf1eOzVwW7CqIafehg0Z6wlL4sxcg");
+
+			var formdata = new FormData();
+			formdata.append("file", fileInput.files[0], "test.csv");
+
+			var requestOptions = {
+			  method: 'POST',
+			  headers: myHeaders,
+			  body: formdata,
+			  redirect: 'follow'
+			};
+
+			fetch("https://hpid.homethang.duckdns.org/api/user?csv=true", requestOptions)
+			  .then(response => response.text())
+			  .then(result => console.log(result))
+			  .catch(error => console.log('error', error));
+
+    	res: //Json status
+    		{
+			    "Saved": 3,
+			    "Error": [
+			        {
+			            "username": "b",
+			            "error": "User already"
+			        },
+			        {
+			            "username": "John",
+			            "error": "User already"
+			        },
+			        {
+			            "username": "e",
+			            "error": "User already"
+			        },
+			        {
+			            "username": "f",
+			            "error": "User already"
+			        },
+			        {
+			            "username": "g",
+			            "error": "User already"
+			        },
+			        {
+			            "username": "b",
+			            "error": "User already"
+			        }
+			    ]
+			}
+    		
+
+    PATCH:
+    ///// edit user \\\\\
+    	param:
+    		right=false
+    	req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+           	body = {
+			    "username": "testuser1",
+			    "newusername": "testttt",		//optional
+		        "email": "testuser@example.com",
+		        "group": "Test"
+			}
+        res: //string message 
+        	Edit user done
+
+    ///// assign right \\\\\
+    	param:
+    		right=true
+    	req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+           	body = {
+			    "username": "testuser1",
+		        "right": "Full access"
+			}
+        res: //string message 
+        	Edit right done
+
+    DELETE:
+    	req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+           	body = {
+			    "username": "testuser1",
+			}
+        res: //string message 
+        	Removed
+
+********************************
+/api/layout:
+
+	images source example link: https://hpid.homethang.duckdns.org/images/tree-736885_1280.jpg
+
+	GET:
+		req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+		res: //json list layout 
+			[
+			    {
+			        "layoutname": "phòng 1",
+			        "layoutdir": "tree-736885_1280.jpg",
+			        "id": 1
+			    },
+			    {
+			        "layoutname": "phòng 2",
+			        "layoutdir": "tree-736885_1280.jpg",
+			        "id": 2
+			    },
+			    {
+			        "layoutname": "phòng 3",
+			        "layoutdir": "tree-736885_1280.jpg",
+			        "id": 3
+			    }
+			]
+
+	POST:
+		code example:
+			var myHeaders = new Headers();
+			myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiIiwiaWF0IjoxNjk5MTY2MzE3LCJleHAiOjE2OTkyMDIzMTd9.z2yV6qBUPAyBLOYF7xTFl8klgLFVe4utjWAfek2FQZM");
+
+			var formdata = new FormData();
+			formdata.append("layoutname", "phòng 3");
+			formdata.append("file", fileInput.files[0], "file");
+
+			var requestOptions = {
+			  method: 'POST',
+			  headers: myHeaders,
+			  body: formdata,
+			  redirect: 'follow'
+			};
+
+			fetch("https://hpid.homethang.duckdns.org/api/layout", requestOptions)
+			  .then(response => response.text())
+			  .then(result => console.log(result))
+			  .catch(error => console.log('error', error));
+		res: //string message
+			Add layout succeed
+
+	PATCH:
+		code example:
+			var myHeaders = new Headers();
+			myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiIiwiaWF0IjoxNjk5MTY2MzE3LCJleHAiOjE2OTkyMDIzMTd9.z2yV6qBUPAyBLOYF7xTFl8klgLFVe4utjWAfek2FQZM");
+
+			var formdata = new FormData();
+			formdata.append("layoutname", "phòng 1");
+			formdata.append("file", fileInput.files[0], "file");
+
+			var requestOptions = {
+			  method: 'PATCH',
+			  headers: myHeaders,
+			  body: formdata,
+			  redirect: 'follow'
+			};
+
+			fetch("https://hpid.homethang.duckdns.org/api/layout", requestOptions)
+			  .then(response => response.text())
+			  .then(result => console.log(result))
+			  .catch(error => console.log('error', error));
+
+		res: //String message
+			Edit layout done
+
+	DELETE:
+    	req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+           	body = {
+			    "layoutname":"phòng 1"
+			}
+        res: //string message 
+        	Removed
+
+
+********************************
+/api/port:
+	GET:
+		req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+		res: //json list layout 
+			[
+			    {
+			        "portid": 1,
+			        "portname": "switch3-port1",
+			        "right": [
+			            {
+			                "_id": "654918583eae524eb416e5b5",
+			                "right": "No access"
+			            }
+			        ],
+			        "layout": [
+			            {
+			                "_id": "6547810fda43986e8926272a",
+			                "layoutname": "phòng 1"
+			            }
+			        ],
+			        "user": [
+			            {
+			                "_id": "6549bb3bed1e956f73c0a320",
+			                "username": "Nobody",
+			                "email": "nobody@gmail.com"
+			            }
+			        ],
+			        "status": "DOWN"
+			    },
+			    {
+			        "portid": 2,
+			        "portname": "switch3-port2",
+			        "right": [
+			            {
+			                "_id": "654918583eae524eb416e5b6",
+			                "right": "Internet only"
+			            }
+			        ],
+			        "layout": [
+			            {
+			                "_id": "6547810fda43986e8926272a",
+			                "layoutname": "phòng 1"
+			            }
+			        ],
+			        "user": [
+			            {
+			                "_id": "6549bb3bed1e956f73c0a320",
+			                "username": "Nobody",
+			                "email": "nobody@gmail.com"
+			            }
+			        ],
+			        "status": "DOWN"
+			    }
+			]
+
+	PATCH:
+		req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+           	body = {
+			    "portname": "switch1-port1",
+			    "layoutname": "2",
+			    "username": "Nobody",
+			    "status": "UP"
+			}
+        res: //string message 
+        	Edit user done
+
+
+********************************
+/api/scheduler:
+	GET:
+		req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+		res: //json list scheduler
+			[
+			    {
+			        "id": 1,
+			        "datetime": "November 20, 2023 at 12:00 AM GMT+7",
+			        "port": [
+			            {
+			                "portname": "switch2-port3",
+			                "layout": [
+			                    {
+			                        "layoutname": "2"
+			                    }
+			                ],
+			                "user": [
+			                    {
+			                        "username": "Nobody"
+			                    }
+			                ]
+			            }
+			        ],
+			        "changeto": "UP",
+			        "__v": 0
+			    },
+			    {
+			        "id": 2,
+			        "datetime": "November 20, 2023 at 12:00 AM GMT+7",
+			        "port": [
+			            {
+			                "portname": "switch1-port3",
+			                "layout": [
+			                    {
+			                        "layoutname": "1"
+			                    }
+			                ],
+			                "user": [
+			                    {
+			                        "username": "Nobody"
+			                    }
+			                ]
+			            }
+			        ],
+			        "changeto": "DOWN",
+			        "__v": 0
+			    }
+			]
+
+	POST: 
+		req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+           	body = {
+			    "year": 2023,
+			    "month": 11,
+			    "day": 17,
+			    "hours": 17,
+			    "minutes":40,
+			    "portname":"switch1-port3",
+			    "status":"UP"
+			}
+        res: //string message 
+        	Add scheduler succeed
+
+
+	DELETE:
+    	req:
+			headers = {
+				"Content-Type": 'application/json',
+	            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiIiLCJpYXQiOjE2OTg1NzQ2OTYsImV4cCI6MTY5ODU3.......'			
+           	}
+           	body = {
+			    "id": 0
+			}
+        res: //string message 
+        	Scheduler removed

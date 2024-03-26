@@ -1,0 +1,10 @@
+username,email,group
+John,john@example.com,test
+Alice,alice@example.com,test
+a,bob@example.com,test
+b,john@example.com,test
+b,alice@example.com,test
+d,bob@example.com,test
+e,john@example.com,test
+f,alice@example.com,test
+g,bob@example.com,test

@@ -1,0 +1,14 @@
+.table-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .table-container {
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+    max-width: 95%;
+  }
+}

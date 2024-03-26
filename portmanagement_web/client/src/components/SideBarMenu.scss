@@ -1,0 +1,123 @@
+.App-header {
+  display: flex;
+  gap: 80px;
+  .menu {
+    position: relative;
+    padding: 6px 18px 8px;
+    border-radius: 7px;
+    &:hover {
+      background-color: #ffdddd;
+    }
+    span {
+      color: black;
+      font-weight: 700;
+      font-size: 18px;
+    }
+  }
+}
+
+.dropdown-list {
+  width: 200px;
+  background: #ffdddd;
+  transition: all linear 0.3s;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: -15px;
+  ul {
+    list-style: none;
+    padding: unset;
+    margin: unset;
+    li {
+      transition: all linear 0.3s;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 10px 18px;
+      &:hover {
+        background: #c1c1c1;
+        cursor: pointer;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.account-dropdown {
+  button {
+    margin-left: -5px;
+    padding: 5px 10px;
+    background: #ffdddd;
+    font-size: 16px;
+    font-weight: 700;
+  }
+}
+
+.menu-mobile {
+  .bm-burger-button {
+    position: relative;
+    width: 25px;
+    height: 20px;
+    .bm-burger-bars {
+      background: #373a47;   
+    }
+  }
+
+  .bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    .bm-menu {
+      background: #373a47;
+      padding: 2.5em 1.5em 0;
+      font-size: 12px;
+    }
+    
+  }
+  .bm-cross-button {
+    height: 50px;
+    width: 50px;
+    .bm-cross {
+      background: #bdc3c7;
+      
+    }
+  }
+
+  .bm-morph-shape {
+    fill: #373a47;
+  }
+
+  .bm-item-list {
+    color: #b8b7ad;
+    padding: 0.8em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 50px;
+    margin-left: -10px;
+    display: flex;
+    width: 60%;
+    align-items: flex-start;
+    .bm-item li, .nav-link {
+      list-style: none;
+      color: #d1d1d1;
+      margin-bottom: 10px;
+      text-align: left;
+      text-decoration: none;
+      transition: color 0.2s;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
+  .bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .account-dropdown {
+    margin-top: 10px;
+    // margin-right: -10px;
+  }
+}
