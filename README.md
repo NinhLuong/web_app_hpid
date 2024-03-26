@@ -24,4 +24,15 @@ Design web and multi-platform mobile apps to manage network ports of the system 
 
 ![image](https://github.com/NinhLuong/web_app_hpid/assets/90811122/2b000f61-8415-4faf-af4b-b7185cd84e4b)
 
+![image](https://github.com/NinhLuong/web_app_hpid/assets/90811122/99dc6a7b-b87c-4756-8cb5-4a21b392683c)
+
+![image](https://github.com/NinhLuong/web_app_hpid/assets/90811122/605490e8-94d6-4cd8-a748-c87caad74aa6)
+
+![image](https://github.com/NinhLuong/web_app_hpid/assets/90811122/d93ae11f-55c6-4823-a558-05d5795619e9)
+
+![image](https://github.com/NinhLuong/web_app_hpid/assets/90811122/f4ed2a89-653f-4ab7-9b2e-3ffb0c1e6fa5)
+
+![image](https://github.com/NinhLuong/web_app_hpid/assets/90811122/54c1f654-1528-4764-82dd-e0c42f50485f)
+
+
 
